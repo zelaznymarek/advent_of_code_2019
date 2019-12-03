@@ -1,4 +1,5 @@
 from day_1 import additional_fuel, count_fuel, count_module_fuel, count_total_fuel
+from day_2_part_1 import process_program
 
 tests = []
 
@@ -43,6 +44,17 @@ def test_count_total_fuel():
     expected = 446
 
     return count_total_fuel(modules) == expected
+
+
+# day 2
+
+
+@add_test
+def test_process_program():
+    program = [1, 9, 10, 3, 2, 3, 11, 0, 99, 30, 40, 50]
+    expected = 3500
+
+    return process_program(program) == expected
 
 
 if __name__ == '__main__':
