@@ -1,5 +1,5 @@
 from day_1 import additional_fuel, count_fuel, count_module_fuel, count_total_fuel
-from day_2_part_1 import process_program
+from day_2 import process_program
 
 tests = []
 
