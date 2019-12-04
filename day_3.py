@@ -1,6 +1,3 @@
-from math import sqrt, pow
-
-
 def move_right(position):
     return position[0], position[1] + 1
 
