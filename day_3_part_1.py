@@ -29,18 +29,15 @@ def process_paths(paths):
         for i in range(path[1]):
             positions.append(moves[path[0]](positions[-1]))
 
-    return set(positions) - {(0, 0)}
+    return positions[1:]
 
 
 def parse_path(path):
     return path[0], int(path[1:])
 
 
-def find_crossings(wire_a, wire_b):
-    path_a = process_paths([parse_path(p) for p in wire_a])
-    path_b = process_paths([parse_path(p) for p in wire_b])
-
-    return list(path_a.intersection(path_b))
+def find_crossings(path_a, path_b):
+    return list(set(path_a).intersection(set(path_b)))
 
 
 def compute_distance(point):
@@ -48,7 +45,10 @@ def compute_distance(point):
 
 
 def find_closest_crossing(wire_a, wire_b):
-    crossings = find_crossings(wire_a, wire_b)
+    path_a = process_paths([parse_path(p) for p in wire_a])
+    path_b = process_paths([parse_path(p) for p in wire_b])
+
+    crossings = find_crossings(path_a, path_b)
 
     return min([compute_distance(c) for c in crossings])
 
