@@ -2,6 +2,7 @@ from day_1 import additional_fuel, count_fuel, count_module_fuel, count_total_fu
 from day_2 import process_program
 from day_3_part_1 import process_paths, parse_path, find_crossings, find_closest_crossing
 from day_3_part_2 import count_moves, find_first_crossing
+from day_4 import int_to_digits, is_possible, has_valid_adjacent_digits
 
 tests = []
 
@@ -125,6 +126,43 @@ def test_find_first_crossing():
     expected = 610
 
     return find_first_crossing(wire_a, wire_b) == expected
+
+
+# day 4
+
+
+@add_test
+def test_int_to_digits():
+    number = 345764
+    expected = [3, 4, 5, 7, 6, 4]
+
+    return int_to_digits(number) == expected
+
+
+@add_test
+def test_is_possible():
+    numbers = [111111, 223450, 123789, 112233, 123444, 111122]
+
+    expected = [False, False, False, True, False, True]
+
+    return [is_possible(number) for number in numbers] == expected
+
+
+@add_test
+def test_has_valid_adjacent_digits():
+    numbers = [
+        [1, 1, 1, 1, 1, 1],
+        [2, 2, 3, 4, 5, 0],
+        [1, 2, 3, 7, 8, 9],
+        [1, 1, 2, 2, 3, 3],
+        [1, 2, 3, 4, 4, 4],
+        [1, 1, 1, 1, 2, 2],
+        [1, 2, 2, 2, 3, 3]
+    ]
+
+    expected = [False, True, False, True, False, True, True]
+
+    return [has_valid_adjacent_digits(number) for number in numbers] == expected
 
 
 if __name__ == '__main__':
