@@ -1,8 +1,12 @@
+from collections import Counter
+
 from day_1 import additional_fuel, count_fuel, count_module_fuel, count_total_fuel
 from day_2 import process_program
 from day_3_part_1 import process_paths, parse_path, find_crossings, find_closest_crossing
 from day_3_part_2 import count_moves, find_first_crossing
 from day_4 import int_to_digits, is_possible, has_valid_adjacent_digits
+from day_8_part_1 import split_to_layers, get_layer_with_min_zeros
+from day_8_part_2 import add_layer
 
 tests = []
 
@@ -163,6 +167,47 @@ def test_has_valid_adjacent_digits():
     expected = [False, True, False, True, False, True, True]
 
     return [has_valid_adjacent_digits(number) for number in numbers] == expected
+
+
+# day 8 part 1
+
+
+@add_test
+def test_split_to_layers():
+    digits = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    expected = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+    return split_to_layers(digits, 3) == expected
+
+
+@add_test
+def test_get_layer_with_min_zeros():
+    counters = [
+        Counter([0, 0, 0, 0, 1, 1, 2]),
+        Counter([0, 0, 0, 1, 1, 2]),
+        Counter([0, 0, 1, 1, 2])
+    ]
+
+    expected = Counter([0, 0, 1, 1, 2])
+
+    return get_layer_with_min_zeros(counters) == expected
+
+
+# day 8 part 2
+
+
+@add_test
+def test_add_layer():
+    base_layer = [0,0,0,0]
+    layers = [[2,2,1,2], [1,1,2,2], [0,2,2,2]]
+
+    expected = [0,1,1,0]
+
+    for layer in layers:
+        base_layer = add_layer(layer, base_layer, 4)
+
+    return base_layer == expected
 
 
 if __name__ == '__main__':

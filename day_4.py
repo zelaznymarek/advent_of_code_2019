@@ -1,5 +1,4 @@
 from collections import Counter
-from datetime import datetime
 
 
 def has_valid_adjacent_digits(digits):
